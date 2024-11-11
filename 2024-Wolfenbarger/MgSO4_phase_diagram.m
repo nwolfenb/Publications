@@ -1,5 +1,5 @@
 % MgSO4_phase_diagram.m
-% Used to generate the plot shown in Figure 2 in
+% Used to generate the plot shown in Figure 3 in
 %
 % Wolfenbarger, N. S., Blankenship, D. D., Young, D. A., Scanlan, K. M.,
 % Chivers, C. J., Findlay, D., Steinbruegge, G. B., Chan, K., Grima, C.,
