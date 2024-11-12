@@ -3,7 +3,7 @@
 %
 % Wolfenbarger, N. S., Blankenship, D. D., Young, D. A., Scanlan, K. M.,
 % Chivers, C. J., Findlay, D., Steinbruegge, G. B., Chan, K., Grima, C.,
-% Soderlund, K. M., & Schroeder, D. M. (XXXX). Radar Characterization of
+% Soderlund, K. M., & Schroeder, D. M. (2024). Radar Characterization of
 % Salt Layers in Europa’s Ice Shell as a Window into Critical Ice-Ocean
 % Exchange Processes.
 
@@ -76,7 +76,7 @@ axis tight
 ax1.FontSize = fontsize;
 ax1.XLabel.String = 'Bulk Ice Salinity, $S$ (ppt)';
 ax1.XLabel.FontSize = fontsize;
-ax1.YLabel.String = 'Salt Volume Fraction, $V_{ss}/V$';
+ax1.YLabel.String = 'Salt Hydrate Volume Fraction, $V_{ss}/V$';
 ax1.YLabel.FontSize = fontsize;
 ax1.XMinorTick = 'on';
 box on
