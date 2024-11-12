@@ -2,16 +2,16 @@
 Scripts used to generate published results based on code contained in repositories owned by [Natalie S. Wolfenbarger](https://scholar.google.com/citations?user=TReEGqQAAAAJ&hl=en)
 
 
-## 2024-Wolfenbarger
-Wolfenbarger, N. S., Blankenship, D. D., Young, D. A., Scanlan, K. M., Chivers, C. J., Findlay, D., Steinbruegge, G. B., Chan, K., Grima, C., Soderlund, K. M., & Schroeder, D. M. (XXXX). Radar Characterization of Salt Layers in Europa’s Ice Shell as a Window into Critical Ice-Ocean Exchange Processes.
+## 2024-Wolfenbarger-GRL
+Wolfenbarger, N. S., Blankenship, D. D., Young, D. A., Scanlan, K. M., Chivers, C. J., Findlay, D., Steinbruegge, G. B., Chan, K., Grima, C., Soderlund, K. M., & Schroeder, D. M. (2024). Radar Characterization of Salt Layers in Europa’s Ice Shell as a Window into Critical Ice-Ocean Exchange Processes.
 
-`MgSO4_phase_diagram.m` generates the plots shown in Figure 2.
+`MgSO4_phase_diagram.m` generates the plots shown in Figure 3.
 
 `R_ice_salt.m` generates the plots shown in Figure 1.
 
-`salt_layer_thickness.m` generates the plot shown in Figure 3.
+`salt_layer_thickness_Sb0.m` generates the plots shown in Figure 4.
 
-`Sb0_constraints.m` generates the plot shown in Figure 4.
+`salt_layer_reflectivity.m` generates the plot shown in Figure 2.
 
 
 ## 2022-Wolfenbarger-GRL
