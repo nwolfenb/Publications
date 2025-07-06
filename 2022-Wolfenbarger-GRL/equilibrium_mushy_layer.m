@@ -22,6 +22,7 @@
 
 clear all; close all; clc
 
+%% Add Paths
 % Located at https://github.com/nwolfenb
 addpath(genpath('..\..\FreezingSimulations'))
 addpath(genpath('..\..\BrineVolumeFraction'))
@@ -29,6 +30,7 @@ addpath(genpath('..\..\BrineVolumeFraction'))
 %% Defaults
 fontsize = 8;
 linewidth = 2;
+interpreter = 'latex';
 
 %% Constants
 Rac = 1.01e-2;
@@ -110,10 +112,10 @@ ax1 = gca;
 axis tight
 ax1.YLim = [0.5 2.5];
 ax1.FontSize = fontsize;
-ax1.TickLabelInterpreter = 'latex';
-xlabel('Ocean Salinity, $S_{ocean}$ (ppt)','FontSize',fontsize,'interpreter','latex')
-ylabel('Mushy Layer Thickness (m)','FontSize',fontsize,'interpreter','latex')
-title(['Ice Shell Thickness: ',num2str(H/1000),' km'],'FontSize',fontsize,'interpreter','latex')
+ax1.TickLabelInterpreter = interpreter;
+xlabel('Ocean Salinity, $S_{ocean}$ (ppt)','FontSize',fontsize,'interpreter',interpreter)
+ylabel('Mushy Layer Thickness (m)','FontSize',fontsize,'interpreter',interpreter)
+title(['Ice Shell Thickness: ',num2str(H/1000),' km'],'FontSize',fontsize,'interpreter',interpreter)
 
 
 subplot(3,1,2)
@@ -121,17 +123,17 @@ ax2 = gca;
 ax2.XTickLabel = [];
 ax2.YDir = 'reverse';
 ax2.FontSize = fontsize;
-ax2.TickLabelInterpreter = 'latex';
+ax2.TickLabelInterpreter = interpreter;
 axis tight
-ylabel('Freezing Temperature, $T_f$ ($^{\circ}$C)','FontSize',fontsize,'interpreter','latex')
+ylabel('Freezing Temperature, $T_f$ ($^{\circ}$C)','FontSize',fontsize,'interpreter',interpreter)
 
 subplot(3,1,3)
 ax3 = gca;
 ax3.FontSize = fontsize;
-ax3.TickLabelInterpreter = 'latex';
+ax3.TickLabelInterpreter = interpreter;
 axis tight
-xlabel('Brine Salinity, $S_{b}$ (ppt)','FontSize',fontsize,'interpreter','latex')
-ylabel('Difference in Brine Density, $\Delta \rho$ (g/cm$^3$)','FontSize',fontsize,'interpreter','latex')
+xlabel('Brine Salinity, $S_{b}$ (ppt)','FontSize',fontsize,'interpreter',interpreter)
+ylabel('Difference in Brine Density, $\Delta \rho$ (g/cm$^3$)','FontSize',fontsize,'interpreter',interpreter)
 
 %% Buffo et al. (2021)
 % Constants
@@ -184,7 +186,7 @@ plot(34,0,'ko','markerfacecolor','k','markersize',4)
 leg{end+1} = 'Buffo et al. (2021)';
 leg{end+1} = '34 ppt';
 
-legend(leg,'location','NorthWest','interpreter','latex','FontSize',fontsize)
+legend(leg,'location','NorthWest','interpreter',interpreter,'FontSize',fontsize)
 
 
 %% Figure Formatting

@@ -12,6 +12,7 @@
 
 clear all; close all; clc
 
+%% Add Paths
 % Located at https://github.com/nwolfenb
 addpath(genpath('..\..\FreezingSimulations'))
 addpath(genpath('..\..\BrineVolumeFraction'))

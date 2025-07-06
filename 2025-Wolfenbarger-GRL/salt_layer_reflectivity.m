@@ -9,12 +9,14 @@
 
 clear all; close all; clc
 
+%% Add Paths
 % Located at https://github.com/nwolfenb
 addpath(genpath('..\..\IcyRF'))
 
 %% Defaults
 fontsize = 10;
 linewidth = 2;
+interpreter = 'latex';
 
 %% Radar Parameters
 fc_vec = [9 9 60]*1e6; % center frequency (Hz)
@@ -151,17 +153,21 @@ end
 axis tight
 ax = gca;
 ax.FontSize = fontsize;
+ax.TickLabelInterpreter = interpreter;
 ax.Children = [ax.Children(5); ax.Children(3); ax.Children(1); ax.Children(6); ax.Children(4); ax.Children(2); ax.Children(7)];
 ax.XTick = [1e-1 1 1e1 1e2 1e3];
 ax.XLabel.String = 'Salt Layer Thickness, $d_{\mathrm{salt}}$ (m)';
 ax.XLabel.FontSize = fontsize;
+ax.XLabel.Interpreter = interpreter;
 ax.YLabel.String = 'Reflectivity, $R$ (dB)';
 ax.YLabel.FontSize = fontsize;
+ax.YLabel.Interpreter = interpreter;
 ax.XLim = [1e-1 1e3];
 ax.YLim = [-60 -20];
 leg = legend(p,['$R=$ ',num2str(RF_dB,'%2.1f'),' dB'],'RIME','REASON HF','REASON VHF',...
 'Location','SouthEast','FontSize',fontsize-2);
 leg.ItemTokenSize(1) = leg.ItemTokenSize(2);
+leg.Interpreter = interpreter;
 
 %% Below Range Resolution
 text(7.9,-20,{'REASON     ';''},...

@@ -1,9 +1,23 @@
 # Publications
 Scripts used to generate published results based on code contained in repositories owned by [Natalie S. Wolfenbarger](https://scholar.google.com/citations?user=TReEGqQAAAAJ&hl=en)
 
+## 2025-Wolfenbarger-JGR
+Wolfenbarger, N. S., Broome A. L., Schroeder, D. M., Ermakov, A. I., Bolton, S. J., & Blankenship, D. D. (2025) Passive Microwave Radiometry and Active Radar Sounding as Complementary Tools for Geophysical Investigations of Icy Ocean Worlds. Journal of Geophysical Research: Planets.
 
-## 2024-Wolfenbarger-GRL
-Wolfenbarger, N. S., Blankenship, D. D., Young, D. A., Scanlan, K. M., Chivers, C. J., Findlay, D., Steinbruegge, G. B., Chan, K., Grima, C., Soderlund, K. M., & Schroeder, D. M. (2024). Radar Characterization of Salt Layers in Europa’s Ice Shell as a Window into Critical Ice-Ocean Exchange Processes.
+`joint_constraints.m` generates the plots shown in Figure 6.
+
+`penetration_depth.m` generates the plots shown in Figure 2.
+
+`radar_constraints.m` generates the plots shown in Figure 5.
+
+`radar_radiometer.m` generates the plots shown in Figure 3.
+
+`radiometer_constraints.m` generates the plots shown in Figure 4.
+
+`Tb_data.m` generates the data used to generate Figures 2 - 6.
+
+## 2025-Wolfenbarger-GRL
+Wolfenbarger, N. S., Blankenship, D. D., Young, D. A., Scanlan, K. M., Chivers, C. J., Findlay, D., Steinbruegge, G. B., Chan, K., Grima, C., Soderlund, K. M., & Schroeder, D. M. (2025). Radar Characterization of Salt Layers in Europa’s Ice Shell as a Window into Critical Ice-Ocean Exchange Processes. Geophysical Research Letters, 52(1), e2024GL109144, https://doi.org/10.1029/2024GL109144.
 
 `MgSO4_phase_diagram.m` generates the plots shown in Figure 3.
 

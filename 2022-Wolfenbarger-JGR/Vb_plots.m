@@ -8,6 +8,7 @@
 
 clear all; close all; clc
 
+%% Add Paths
 % Located at https://github.com/nwolfenb
 addpath(genpath('..\..\FreezingSimulations'))
 addpath(genpath('..\..\BrineVolumeFraction'))
@@ -15,6 +16,7 @@ addpath(genpath('..\..\BrineVolumeFraction'))
 %% Defaults
 fontsize = 8;
 linewidth = 2;
+interpreter = 'latex';
 
 %% Binary
 fn = {'..\..\FreezingSimulations\FREZCHEM\v15.1\NaCl\NaCl_1ppt',...
@@ -34,27 +36,27 @@ for m = 1:length(sol)
     
     ax1 = axes;
     ax1.FontSize = fontsize;
-    ax1.TickLabelInterpreter = 'latex';
+    ax1.TickLabelInterpreter = interpreter;
     yyaxis(ax1,'left')
     h1 = pcolor(ax1,Smat,Tmat,Vb_V);
     h1.EdgeColor = 'none';
     h1.FaceColor = 'interp';
     axis tight
     ax1.YDir = 'reverse';
-    xlabel('Bulk Ice Salinity, $S$ (ppt)','fontsize',fontsize,'interpreter','latex')
-    ylabel('Temperature, $T$ ($^{\circ}$C)','fontsize',fontsize,'interpreter','latex')
-    title(sol{m},'fontsize',fontsize,'interpreter','latex')
+    xlabel('Bulk Ice Salinity, $S$ (ppt)','fontsize',fontsize,'interpreter',interpreter)
+    ylabel('Temperature, $T$ ($^{\circ}$C)','fontsize',fontsize,'interpreter',interpreter)
+    title(sol{m},'fontsize',fontsize,'interpreter',interpreter)
     yyaxis(ax1,'right')
     ylim([0 1])
     ax1.YDir = 'reverse';
     ax1.YAxis(1).Color = 'k';
     ax1.YAxis(2).Color = 'k';
-    ylabel('Conductive Depth (Normalized)','fontsize',fontsize,'interpreter','latex')
+    ylabel('Conductive Depth (Normalized)','fontsize',fontsize,'interpreter',interpreter)
     
     view(2)
     ax2 = axes;
     ax2.FontSize = fontsize;
-    ax2.TickLabelInterpreter = 'latex';
+    ax2.TickLabelInterpreter = interpreter;
     h2 = pcolor(ax2,Smat,Tmat,Vs_V);
     h2.EdgeColor = 'none';
     h2.FaceColor = 'interp';
@@ -79,12 +81,12 @@ for m = 1:length(sol)
     colormap(ax2,brewermap([],'Reds'))
     set([ax1,ax2],'Position',[.17 .11 .685 .815]);
     cb1 = colorbar(ax1,'Position',[.05 .11 .0675 .815],'FontSize',fontsize,...
-        'TickLabelInterpreter','latex');
+        'TickLabelInterpreter',interpreter);
     cb2 = colorbar(ax2,'Position',[.88 .11 .0675 .815],'FontSize',fontsize,...
-        'TickLabelInterpreter','latex');
-    set(get(cb1,'title'),'string','$V_{b}/V$','interpreter','latex',...
+        'TickLabelInterpreter',interpreter);
+    set(get(cb1,'title'),'string','$V_{b}/V$','interpreter',interpreter,...
         'fontsize',fontsize);
-    set(get(cb2,'title'),'string','$V_{ss}/V$','interpreter','latex',...
+    set(get(cb2,'title'),'string','$V_{ss}/V$','interpreter',interpreter,...
         'fontsize',fontsize);
     
     set(ax1, 'Layer', 'top')
@@ -128,27 +130,27 @@ for m = 1:length(sol)
 
     ax1 = axes;
     ax1.FontSize = fontsize;
-    ax1.TickLabelInterpreter = 'latex';
+    ax1.TickLabelInterpreter = interpreter;
     yyaxis(ax1,'left')
     h1 = pcolor(ax1,Smat,Tmat,Vb_V);
     h1.EdgeColor = 'none';
     h1.FaceColor = 'interp';
     axis tight
     ax1.YDir = 'reverse';
-    xlabel('Bulk Ice Salinity, $S$ (ppt)','fontsize',fontsize,'interpreter','latex')
-    ylabel('Temperature, $T$ ($^{\circ}$C)','fontsize',fontsize,'interpreter','latex')
-    title(sol{m},'fontsize',fontsize,'interpreter','latex')
+    xlabel('Bulk Ice Salinity, $S$ (ppt)','fontsize',fontsize,'interpreter',interpreter)
+    ylabel('Temperature, $T$ ($^{\circ}$C)','fontsize',fontsize,'interpreter',interpreter)
+    title(sol{m},'fontsize',fontsize,'interpreter',interpreter)
     yyaxis(ax1,'right')
     ylim([0 1])
     ax1.YDir = 'reverse';
     ax1.YAxis(1).Color = 'k';
     ax1.YAxis(2).Color = 'k';
-    ylabel('Conductive Depth (Normalized)','fontsize',fontsize,'interpreter','latex')
+    ylabel('Conductive Depth (Normalized)','fontsize',fontsize,'interpreter',interpreter)
     
     view(2)
     ax2 = axes;
     ax2.FontSize = fontsize;
-    ax2.TickLabelInterpreter = 'latex';
+    ax2.TickLabelInterpreter = interpreter;
     h2 = pcolor(ax2,Smat,Tmat,Vs_V);
     h2.EdgeColor = 'none';
     h2.FaceColor = 'interp';
@@ -174,12 +176,12 @@ for m = 1:length(sol)
     colormap(ax2,brewermap([],'Reds'))
     set([ax1,ax2],'Position',[.17 .11 .685 .815]);
     cb1 = colorbar(ax1,'Position',[.05 .11 .0675 .815],'FontSize',fontsize,...
-        'TickLabelInterpreter','latex');
+        'TickLabelInterpreter',interpreter);
     cb2 = colorbar(ax2,'Position',[.88 .11 .0675 .815],'FontSize',fontsize,...
-        'TickLabelInterpreter','latex');
-    set(get(cb1,'title'),'string','$V_{b}/V$','interpreter','latex',...
+        'TickLabelInterpreter',interpreter);
+    set(get(cb1,'title'),'string','$V_{b}/V$','interpreter',interpreter,...
         'fontsize',fontsize);
-    set(get(cb2,'title'),'string','$V_{ss}/V$','interpreter','latex',...
+    set(get(cb2,'title'),'string','$V_{ss}/V$','interpreter',interpreter,...
         'fontsize',fontsize);
     
     set(ax1, 'Layer', 'top')

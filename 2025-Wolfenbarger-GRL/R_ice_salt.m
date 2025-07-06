@@ -9,6 +9,7 @@
 
 clear all; close all; clc
 
+%% Add Paths
 % Located at https://github.com/nwolfenb
 addpath(genpath('..\..\FreezingSimulations'))
 addpath(genpath('..\..\BrineVolumeFraction'))
@@ -17,6 +18,7 @@ addpath(genpath('..\..\IcyRF'))
 %% Defaults
 fontsize = 10;
 linewidth = 2;
+interpreter = 'latex';
 
 %% Plot
 figure
@@ -74,10 +76,13 @@ plot(S,Vs_V_mean,'k','LineWidth',linewidth);
 ax1 = gca;
 axis tight
 ax1.FontSize = fontsize;
+ax1.TickLabelInterpreter = interpreter;
 ax1.XLabel.String = 'Bulk Ice Salinity, $S$ (ppt)';
 ax1.XLabel.FontSize = fontsize;
+ax1.XLabel.Interpreter = interpreter;
 ax1.YLabel.String = 'Salt Hydrate Volume Fraction, $V_{ss}/V$';
 ax1.YLabel.FontSize = fontsize;
+ax1.YLabel.Interpreter = interpreter;
 ax1.XMinorTick = 'on';
 box on
 
@@ -176,10 +181,13 @@ plot(Xmean,R_salt_vec_mean,'k','LineWidth',linewidth)
 axis tight
 ax2 = gca;
 ax2.FontSize = fontsize;
+ax2.TickLabelInterpreter = interpreter;
 ax2.XLabel.String = 'Bulk Ice Salinity Contrast, $\Delta S$ (ppt)';
 ax2.XLabel.FontSize = fontsize;
+ax2.XLabel.Interpreter = interpreter;
 ax2.YLabel.String = 'Reflectivity, $R$ (dB)';
 ax2.YLabel.FontSize = fontsize;
+ax2.YLabel.Interpreter = interpreter;
 ax2.YLim = [-60 -20];
 ax2.XMinorTick = 'on';
 box on

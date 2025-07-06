@@ -8,6 +8,7 @@
 
 clear all; close all; clc
 
+%% Add Paths
 % Located at https://github.com/nwolfenb
 addpath(genpath('..\..\FreezingSimulations'))
 addpath(genpath('..\..\BrineVolumeFraction'))
@@ -15,6 +16,7 @@ addpath(genpath('..\..\BrineVolumeFraction'))
 %% Defaults
 fontsize = 8;
 linewidth = 2;
+interpreter = 'latex';
 
 %% Zoom (Vb only)
 fns = {'..\..\FreezingSimulations\FREZCHEM\v15.1\Cl_Na_Mg_SO4_seawater\Cl_Na_Mg_SO4_seawater',...
@@ -37,7 +39,7 @@ for m = 1:length(fns)
 if m ==1
     ax1 = gca;
     ax1.FontSize = fontsize;
-    ax1.TickLabelInterpreter = 'latex';
+    ax1.TickLabelInterpreter = interpreter;
     yyaxis(ax1,'left')
     h1 = pcolor(ax1,Smat,Tmat,Vb_V);
     h1.EdgeColor = 'none';
@@ -46,27 +48,27 @@ if m ==1
     hold on
     plot(Sb_liq(Sb_liq<=100),T_liq(Sb_liq<=100),'k','linewidth',linewidth)
     [c,h] = contour(Smat,Tmat,Vb_V,[0.06 0.06],'k','linewidth',1);
-    clabel(c,h,'fontsize',fontsize,'interpreter','latex')
+    clabel(c,h,'fontsize',fontsize,'interpreter',interpreter)
     ax1.YDir = 'reverse';
     ylim([Teut 0])
-    xlabel('Bulk Salinity, $S$ (ppt)','fontsize',fontsize,'interpreter','latex')
-    ylabel('Temperature, $T$ ($^{\circ}$C)','fontsize',fontsize,'interpreter','latex')
-    title('Chloride-Dominated','fontsize',fontsize,'interpreter','latex')
+    xlabel('Bulk Salinity, $S$ (ppt)','fontsize',fontsize,'interpreter',interpreter)
+    ylabel('Temperature, $T$ ($^{\circ}$C)','fontsize',fontsize,'interpreter',interpreter)
+    title('Chloride-Dominated','fontsize',fontsize,'interpreter',interpreter)
     colormap(ax1,brewermap([],'Blues'))
     cb1 = colorbar(ax1,'FontSize',fontsize,...
-    'TickLabelInterpreter','latex');
-    set(get(cb1,'title'),'string','$V_{b}/V$','interpreter','latex',...
+    'TickLabelInterpreter',interpreter);
+    set(get(cb1,'title'),'string','$V_{b}/V$','interpreter',interpreter,...
     'fontsize',fontsize);
     yyaxis(ax1,'right')
     ylim([1-(max(T)-Teut/(max(T)-min(T))) 1])
     ax1.YDir = 'reverse';
     ax1.YAxis(1).Color = 'k';
     ax1.YAxis(2).Color = 'k';
-    ylabel('Conductive Depth (Normalized)','fontsize',fontsize,'interpreter','latex')
+    ylabel('Conductive Depth (Normalized)','fontsize',fontsize,'interpreter',interpreter)
 else
     ax2 = gca;
     ax2.FontSize = fontsize;
-    ax2.TickLabelInterpreter = 'latex';
+    ax2.TickLabelInterpreter = interpreter;
     yyaxis(ax2,'left')
     h2 = pcolor(ax2,Smat,Tmat,Vb_V);
     h2.EdgeColor = 'none';
@@ -75,23 +77,23 @@ else
     hold on
     plot(Sb_liq(Sb_liq<=100),T_liq(Sb_liq<=100),'k','linewidth',linewidth)
     [c,h] = contour(Smat,Tmat,Vb_V,[0.06 0.06],'k','linewidth',1);
-    clabel(c,h,'fontsize',fontsize,'interpreter','latex')
+    clabel(c,h,'fontsize',fontsize,'interpreter',interpreter)
     ax2.YDir = 'reverse';
     ylim([Teut 0])
-    ylabel('Temperature, $T$ ($^{\circ}$C)','fontsize',fontsize,'interpreter','latex')
-    xlabel('Bulk Salinity, $S$ (ppt)','fontsize',fontsize,'interpreter','latex')
-    title('Sulfate-Dominated','fontsize',fontsize,'interpreter','latex')
+    ylabel('Temperature, $T$ ($^{\circ}$C)','fontsize',fontsize,'interpreter',interpreter)
+    xlabel('Bulk Salinity, $S$ (ppt)','fontsize',fontsize,'interpreter',interpreter)
+    title('Sulfate-Dominated','fontsize',fontsize,'interpreter',interpreter)
     colormap(ax2,brewermap([],'Blues'))
     cb2 = colorbar(ax2,'FontSize',fontsize,...
-    'TickLabelInterpreter','latex');
-    set(get(cb2,'title'),'string','$V_{b}/V$','interpreter','latex',...
+    'TickLabelInterpreter',interpreter);
+    set(get(cb2,'title'),'string','$V_{b}/V$','interpreter',interpreter,...
     'fontsize',fontsize);
     yyaxis(ax2,'right')
     ylim([1-(max(T)-Teut/(max(T)-min(T))) 1])
     ax2.YDir = 'reverse';
     ax2.YAxis(1).Color = 'k';
     ax2.YAxis(2).Color = 'k';
-    ylabel('Conductive Depth (Normalized)','fontsize',fontsize,'interpreter','latex')
+    ylabel('Conductive Depth (Normalized)','fontsize',fontsize,'interpreter',interpreter)
 end
 
 end

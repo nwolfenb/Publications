@@ -8,6 +8,7 @@
 
 clear all; close all; clc
 
+%% Add Paths
 % Located at https://github.com/nwolfenb
 addpath(genpath('..\..\FreezingSimulations'))
 addpath(genpath('..\..\BrineVolumeFraction'))
@@ -16,6 +17,7 @@ addpath(genpath('..\..\BrineVolumeFraction'))
 colors = brewermap(10,'Set2');
 fdir = '..\..\FreezingSimulations\FREZCHEM\v15.1\';
 fontsize = 8;
+interpreter = 'latex';
 
 %% Comparison of H2O activity, brine salinity, ionic strength f(Vb/V)
 solutions = {'Cl_Na_Mg_SO4_seawater\Cl_Na_Mg_SO4_seawater',...
@@ -113,12 +115,12 @@ ax1 = gca;
 ax1.Color = 'w';
 ax1.XTickLabel = [];
 ax1.YLabel.String = 'Temperature, $T$ ($^{\circ}$C)';
-ax1.YLabel.Interpreter = 'latex';
+ax1.YLabel.Interpreter = interpreter;
 ax1.XLim = [0.6 1];
 ax1.YLim = [0.8*(273.15-100)+100  273.15]-273.15;
 ax1.YDir = 'reverse';
 ax1.FontSize = fontsize;
-ax1.TickLabelInterpreter = 'latex';
+ax1.TickLabelInterpreter = interpreter;
 
 
 subplot(2,4,2)
@@ -127,7 +129,7 @@ ax2.Color = 'w';
 ax2.XTickLabel = [];
 ax2.XLim = [0 10];
 ax2.FontSize = fontsize;
-ax2.TickLabelInterpreter = 'latex';
+ax2.TickLabelInterpreter = interpreter;
 ax2.YLim = [0.8*(273.15-100)+100  273.15]-273.15;
 ax2.YTickLabel = [];
 ax2.YDir = 'reverse';
@@ -137,7 +139,7 @@ ax3 = gca;
 ax3.XTickLabel = [];
 ax3.XLim = [0 300];
 ax3.FontSize = fontsize;
-ax3.TickLabelInterpreter = 'latex';
+ax3.TickLabelInterpreter = interpreter;
 yyaxis(ax3,'left')
 ax3.YLim = [0.8*(273.15-100)+100  273.15]-273.15;
 ax3.YTickLabel = [];
@@ -146,7 +148,7 @@ yyaxis(ax3,'right')
 ax3.YLim = [0.8 1];
 ax3.YDir = 'reverse';
 ax3.YLabel.String = 'Conductive Depth (Normalized)';
-ax3.YLabel.Interpreter = 'latex';
+ax3.YLabel.Interpreter = interpreter;
 ax3.YAxis(2).Color = 'k';
 
 subplot(2,4,4)
@@ -156,47 +158,47 @@ subplot(2,4,5)
 ax4 = gca;
 ax4.XLabel.String = 'Water Activity';
 ax4.YLabel.String = 'Brine Volume Fraction, $V_b/V$';
-ax4.XLabel.Interpreter = 'latex';
-ax4.YLabel.Interpreter = 'latex';
+ax4.XLabel.Interpreter = interpreter;
+ax4.YLabel.Interpreter = interpreter;
 ax4.XLim = [0.6 1];
 ax4.YLim = [1e-4 1];
 ax4.YTick = [1e-4 1e-3 1e-2 1e-1 1];
 ax4.YDir = 'reverse';
 ax4.FontSize = fontsize;
-ax4.TickLabelInterpreter = 'latex';
+ax4.TickLabelInterpreter = interpreter;
 
 subplot(2,4,6)
 ax5 = gca;
 ax5.XLabel.String = {'Ionic Strength','(mol/kg H$_{2}$O)'};
-ax5.XLabel.Interpreter = 'latex';
+ax5.XLabel.Interpreter = interpreter;
 ax5.XLim = [0 10];
 ax5.YTickLabel = [];
 ax5.YLim = [1e-4 1];
 ax5.YDir = 'reverse';
 ax5.FontSize = fontsize;
-ax5.TickLabelInterpreter = 'latex';
+ax5.TickLabelInterpreter = interpreter;
 
 subplot(2,4,7)
 ax6 = gca;
 ax6.XLabel.String = {'Brine Salinity, $S_b$','(ppt)'};
-ax6.XLabel.Interpreter = 'latex';
+ax6.XLabel.Interpreter = interpreter;
 ax6.XLim = [0 300];
 ax6.YTickLabel = [];
 ax6.YLim = [1e-4 1];
 ax6.YDir = 'reverse';
 ax6.FontSize = fontsize;
-ax6.TickLabelInterpreter = 'latex';
+ax6.TickLabelInterpreter = interpreter;
 
 subplot(2,4,8)
 ax7 = gca;
 ax7.XLabel.String = {'Temperature, $T$','($^{\circ}$C)'};
-ax7.XLabel.Interpreter = 'latex';
+ax7.XLabel.Interpreter = interpreter;
 ax7.XLim = [-35 0];
 ax7.YTickLabel = [];
 ax7.YLim = [1e-4 1];
 ax7.YDir = 'reverse';
 ax7.FontSize = fontsize;
-ax7.TickLabelInterpreter = 'latex';
+ax7.TickLabelInterpreter = interpreter;
 
 %% Figure Formatting
 %  [left bottom width height]
@@ -293,7 +295,7 @@ height = 2/4*230/10;
 f.Position(3:4) = [width height];
 
 % legend
-leg = legend(p,leg,'fontsize',fontsize,'interpreter','latex');
+leg = legend(p,leg,'fontsize',fontsize,'interpreter',interpreter);
 leg.Position(2) = ax4.Position(2)+ax4.Position(4)+margin/M/2+...
     ax4.Position(4)/2-leg.Position(4)/2;
 leg.Position(1) = ax7.Position(1)+ax7.Position(3)-leg.Position(3);

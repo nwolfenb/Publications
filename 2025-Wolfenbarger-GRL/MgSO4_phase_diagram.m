@@ -9,6 +9,7 @@
 
 clear all; close all; clc
 
+%% Add Paths
 % Located at https://github.com/nwolfenb
 addpath(genpath('..\..\FreezingSimulations'))
 addpath(genpath('..\..\BrineVolumeFraction'))
@@ -16,6 +17,7 @@ addpath(genpath('..\..\BrineVolumeFraction'))
 %% Defaults
 fontsize = 10;
 linewidth = 2;
+interpreter = 'latex';
 
 %% Plot
 fn = '..\..\FreezingSimulations\PHREEQC\frezchem_ColdChem\MgSO4\MgSO4_1ppt.pqo';
@@ -26,12 +28,14 @@ plot(Sb,T+273.15,'k','LineWidth',linewidth);
 
 ax = gca;
 ax.FontSize = fontsize;
+ax.TickLabelInterpreter = interpreter;
 ax.XLabel.String = 'Brine Salinity, $S_b$ (ppt)';
 ax.XLabel.FontSize = fontsize;
+ax.XLabel.Interpreter = interpreter;
 ax.YLabel.String = 'Temperature, $T$ (K)';
 ax.YLabel.FontSize = fontsize;
+ax.YLabel.Interpreter = interpreter;
 ax.YLim = [min(T) max(T)]+273.15;
-
 
 %% Figure Formatting
 %  [left bottom width height]

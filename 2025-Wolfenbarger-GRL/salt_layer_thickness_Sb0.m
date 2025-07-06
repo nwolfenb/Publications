@@ -9,6 +9,7 @@
 
 clear all; close all; clc
 
+%% Add Paths
 % Located at https://github.com/nwolfenb
 addpath(genpath('..\..\FreezingSimulations'))
 addpath(genpath('..\..\BrineVolumeFraction'))
@@ -16,6 +17,9 @@ addpath(genpath('..\..\BrineVolumeFraction'))
 %% Defaults
 fontsize = 10;
 linewidth = 2;
+interpreter = 'latex';
+% brewermap available at MATLAB File Exchange
+cmap = flipud(brewermap(256,'Spectral'));
 
 %% Salt Layer
 fn = '..\..\FreezingSimulations\PHREEQC\frezchem_ColdChem\MgSO4\MgSO4_1ppt.pqo';
@@ -52,11 +56,15 @@ axis tight
 
 ax3 = gca;
 ax3.ColorScale = 'log';
+ax3.Colormap = cmap;
 ax3.FontSize = fontsize;
+ax3.TickLabelInterpreter = interpreter;
 ax3.XLabel.String = 'Initial Brine Salinity, $S_{b,0}$ (ppt)';
 ax3.XLabel.FontSize = fontsize;
+ax3.XLabel.Interpreter = interpreter;
 ax3.YLabel.String = 'Initial Reservoir Thickness, $d_0$ (m)';
 ax3.YLabel.FontSize = fontsize;
+ax3.YLabel.Interpreter = interpreter;
 ax3.YScale = 'log';
 ax3.YTick = [1e-1 1 1e1 1e2 1e3];
 ax3.YTickLabel = {'$10^{-1}$','1','$10$','$10^{2}$','$10^{3}$'};
@@ -114,17 +122,23 @@ axis tight
 
 ax4 = gca;
 ax4.ColorScale = 'log';
+ax4.Colormap = cmap;
 ax4.FontSize = fontsize;
+ax4.TickLabelInterpreter = interpreter;
 ax4.XLabel.String = 'Salt Layer Thickness, $d_{salt}$ (m)';
 ax4.XLabel.FontSize = fontsize;
+ax4.XLabel.Interpreter = interpreter;
 ax4.YLabel.String = 'Initial Reservoir Thickness, $d_0$ (m)';
 ax4.YLabel.FontSize = fontsize;
+ax4.YLabel.Interpreter = interpreter;
 ax4.XScale = 'log';
 ax4.YScale = 'log';
 ax4.XTick = [1e-1 1 1e1 1e2 1e3];
 ax4.YTick = [1e-1 1 1e1 1e2 1e3];
 ax4.XTickLabel = {'$10^{-1}$','1','$10$','$10^{2}$','$10^{3}$'};
+ax4.XTickLabelRotation = 0;
 ax4.YTickLabel = {'$10^{-1}$','1','$10$','$10^{2}$','$10^{3}$'};
+ax4.YTickLabelRotation = 0;
 ax4.Layer = 'Top';
 
 cb4 = colorbar;
