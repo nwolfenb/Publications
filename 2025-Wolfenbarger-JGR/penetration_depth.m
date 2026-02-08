@@ -184,6 +184,7 @@ for p = 1:length(S)
     end
 end
 
+D = logspace(-3,2,1e4)*1e3;
 att_crit = -10*log10(1/exp(1));
 for m = 1:length(f)
     P = rho*g*D;
@@ -264,8 +265,8 @@ ax1.Position(2) = ax3.Position(2)+ax1.Position(4)+1.5*margin;
 ax2.Position(2) = ax4.Position(2)+ax2.Position(4)+1.5*margin;
 
 % left
-ax2.Position(1) = ax1.Position(1)+ax2.Position(3)+1.25*margin;
-ax4.Position(1) = ax3.Position(1)+ax4.Position(3)+1.25*margin;
+ax2.Position(1) = ax1.Position(1)+ax2.Position(3)+1.5*margin;
+ax4.Position(1) = ax3.Position(1)+ax4.Position(3)+1.5*margin;
 
 % legends
 leg2.Position(1) = ax2.Position(1)+ax2.Position(3)+0.5*margin;
@@ -278,7 +279,7 @@ ta.FontSize = fontsize+2;
 ta.FontWeight = 'bold';
 ta.Interpreter = 'tex';
 ta.Units = 'centimeters';
-ta.Position = [ax1.Position(1)-margin ax1.Position(2)+h0 0.1 0.1];
+ta.Position = [ax1.Position(1)-1.1*margin ax1.Position(2)+h0 0.1 0.1];
 ta.EdgeColor = 'w';
 ta.HorizontalAlignment = 'left';
 ta.VerticalAlignment = 'bottom';
@@ -289,7 +290,7 @@ tb.FontSize = fontsize+2;
 tb.FontWeight = 'bold';
 tb.Interpreter = 'tex';
 tb.Units = 'centimeters';
-tb.Position = [ax2.Position(1)-margin ax2.Position(2)+h0 0.1 0.1];
+tb.Position = [ax2.Position(1)-1.1*margin ax2.Position(2)+h0 0.1 0.1];
 tb.EdgeColor = 'w';
 tb.HorizontalAlignment = 'left';
 tb.VerticalAlignment = 'bottom';
@@ -300,7 +301,7 @@ tc.FontSize = fontsize+2;
 tc.FontWeight = 'bold';
 tc.Interpreter = 'tex';
 tc.Units = 'centimeters';
-tc.Position = [ax3.Position(1)-margin ax3.Position(2)+h0 0.1 0.1];
+tc.Position = [ax3.Position(1)-1.1*margin ax3.Position(2)+h0 0.1 0.1];
 tc.EdgeColor = 'w';
 tc.HorizontalAlignment = 'left';
 tc.VerticalAlignment = 'bottom';
@@ -311,7 +312,7 @@ td.FontSize = fontsize+2;
 td.FontWeight = 'bold';
 td.Interpreter = 'tex';
 td.Units = 'centimeters';
-td.Position = [ax4.Position(1)-margin ax4.Position(2)+h0 0.1 0.1];
+td.Position = [ax4.Position(1)-1.1*margin ax4.Position(2)+h0 0.1 0.1];
 td.EdgeColor = 'w';
 td.HorizontalAlignment = 'left';
 td.VerticalAlignment = 'bottom';
@@ -319,6 +320,6 @@ td.VerticalAlignment = 'bottom';
 f = gcf;
 f.Color = 'w';
 f.Units = 'centimeters';
-width = 4.25*margin+2*w0;
+width = 2*(2.25*margin+w0);
 height = 2*(1.5*margin+h0);
 f.Position(3:4) = [width height];

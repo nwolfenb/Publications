@@ -13,6 +13,60 @@ clear all; close all; clc
 addpath(genpath('..\..\IcyRF'))
 addpath(genpath('..\..\BrineVolumeFraction'))
 
+%% Brown
+% Data for Figure S9 in Supporting Information S1
+f = [0.6 1.2 2.5 5.0 10 22]'*1e9; % Hz
+D = [1e-3 (1:1:100)]*1e3; % m
+Ts = 111; % K
+Tsky = 0; % K
+Tm = 260; % K
+rs = 0;
+rb = 0;
+for m=1:length(f)
+    for n = 1:length(D)
+
+        z = (0:1:D(n))';
+        T = Ts*(Tm/Ts).^(z./D(n));
+        eps_ice = ice_matzler(T-273.15,f(m));
+
+        Z{m,n} = z;
+
+        [Tb(m,n), Tb_z{m,n}, Tb1(m,n), Tb2(m,n), Tb3(m,n)] = brightness(T,z,eps_ice,rs,rb,f(m),Tsky);
+    end
+end
+
+save('Tb_Brown.mat','Tb','f','D','Tb_z','Z','Tb1','Tb2','Tb3')
+
+%% Simple
+% Data for Figure S7 in Supporting Information S1
+f = [0.6 1.2 2.5 5.0 10 22]'*1e9; % Hz
+D = logspace(-3,5,9)*1e3; % m
+Ts = 100; % K
+Tm = 273.15; % K
+Tsky = 0; % K
+rs = 0.1;
+rb = 0.5;
+k_scattering = 0;
+
+Tb = zeros(length(f),length(D));
+Tb1 = Tb;
+Tb2 = Tb;
+Tb3 = Tb;
+for m=1:length(f)
+    for n = 1:length(D)
+        z = (0:1:D(n))';
+        T = Ts*(Tm/Ts).^(z./D(n));
+
+        Z{m,n} = z;
+
+        eps_ice = ice_permittivity(T-273.15,f(m),0);
+        [Tb(m,n), Tb_z{m,n}, Tb1(m,n), Tb2(m,n), Tb3(m,n)] = brightness(T,z,eps_ice,rs,rb,f(m),Tsky);
+    end
+end
+
+save('Tb_simple.mat','Tb','f','D','Tb_z','Z','Tb1','Tb2','Tb3',...
+    'Ts','Tm','rs','rb', '-v7.3')
+
 %% Ideal
 % Data for Figure 3 and Figures S5, S6 in Supporting Information S1
 f = [0.6 1.2 2.5 5.0 10 22]'*1e9; % Hz

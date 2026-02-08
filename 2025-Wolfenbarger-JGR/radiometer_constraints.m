@@ -63,9 +63,9 @@ x = repmat(D'/1e3,1,length(deltaTm));
 y = repmat(deltaTm,length(D),1);
 
 
-[C,h] = contour(y.',x.',delta_Tb.',[10:5:40],'LineWidth',linewidth,'LineColor',[0 112 192]/255);
-clabel(C,h,'Interpreter','latex','FontSize',fontsize,'Color',[0 112 192]/255,...
-    'BackgroundColor','w','LabelSpacing', 700)
+[C,h] = contour(y.',x.',delta_Tb.',[10:5:50],'LineWidth',linewidth,'LineColor',[0 112 192]/255);
+clabel(C,h,'manual','Interpreter','latex','FontSize',fontsize,'Color',[0 112 192]/255,...
+    'BackgroundColor','w')
 hold on
 
 ax(p) = gca;
@@ -106,8 +106,13 @@ deltaTb = squeeze(Tb(1,:,:)-Tb(2,:,:));
 [deltaTb_max,ind] = max(deltaTb);
 D_vec1 = interp1(deltaTb(1:ind),D(1:ind)/1e3,deltaTb_vec);
 D_vec2 = interp1(deltaTb(ind:end),D(ind:end)/1e3,deltaTb_vec);
-plot(deltaTb_vec,D_vec1,'Color',[0 112 192]/255,'LineWidth',linewidth)
+h = plot(deltaTb_vec,D_vec1,'Color',[0 112 192]/255,'LineWidth',linewidth);
 plot(deltaTb_vec,D_vec2,'Color',[0 112 192]/255,'LineWidth',linewidth)
+leg = legend(h,'$\Delta T_f=0$ K');
+leg.Location = 'NorthEast';
+leg.ItemTokenSize = [15 15];
+leg.FontSize = fontsize;
+leg.Interpreter = interpreter;
 
 ax(p) = gca;
 ax(p).FontSize = fontsize;
@@ -191,8 +196,8 @@ x = repmat(D'/1e3,1,length(fconv));
 y = repmat(fconv,length(D),1);
 
 
-[C,h] = contour(y.',x.',delta_Tb.',[10:5:40],'LineWidth',linewidth,'LineColor',[0 112 192]/255);
-clabel(C,h,'Interpreter','latex','FontSize',fontsize,'Color',[0 112 192]/255,...
+[C,h] = contour(y.',x.',delta_Tb.',[10:5:50],'LineWidth',linewidth,'LineColor',[0 112 192]/255);
+clabel(C,h,'manual','Interpreter','latex','FontSize',fontsize,'Color',[0 112 192]/255,...
     'BackgroundColor','w','LabelSpacing', 700)
 hold on
 
@@ -235,8 +240,14 @@ deltaTb = squeeze(Tb(1,:,:)-Tb(2,:,:));
 [deltaTb_max,ind] = max(deltaTb);
 D_vec1 = interp1(deltaTb(1:ind),D(1:ind)/1e3,deltaTb_vec);
 D_vec2 = interp1(deltaTb(ind:end),D(ind:end)/1e3,deltaTb_vec);
-plot(deltaTb_vec,D_vec1,'Color',[0 112 192]/255,'LineWidth',linewidth)
+h = plot(deltaTb_vec,D_vec1,'Color',[0 112 192]/255,'LineWidth',linewidth);
 plot(deltaTb_vec,D_vec2,'Color',[0 112 192]/255,'LineWidth',linewidth)
+
+leg = legend(h,'$d_{conv}=0$, $T_m=273$ K');
+leg.Location = 'NorthEast';
+leg.ItemTokenSize = [15 15];
+leg.FontSize = fontsize;
+leg.Interpreter = interpreter;
 
 ax(p) = gca;
 ax(p).FontSize = fontsize;
@@ -296,8 +307,8 @@ x = repmat(D'/1e3,1,length(uMCl));
 y = repmat(uMCl,length(D),1);
 
 
-[C,h] = contour(y.',x.',delta_Tb.',[10:5:40],'LineWidth',linewidth,'LineColor',[0 112 192]/255);
-clabel(C,h,'Interpreter','latex','FontSize',fontsize,'Color',[0 112 192]/255,...
+[C,h] = contour(y.',x.',delta_Tb.',[10:5:50],'LineWidth',linewidth,'LineColor',[0 112 192]/255);
+clabel(C,h,'manual','Interpreter','latex','FontSize',fontsize,'Color',[0 112 192]/255,...
     'BackgroundColor','w','LabelSpacing', 700)
 hold on
 
@@ -338,8 +349,15 @@ deltaTb = squeeze(Tb(1,:,:)-Tb(2,:,:));
 [deltaTb_max,ind] = max(deltaTb);
 D_vec1 = interp1(deltaTb(1:ind),D(1:ind)/1e3,deltaTb_vec);
 D_vec2 = interp1(deltaTb(ind:end),D(ind:end)/1e3,deltaTb_vec);
-plot(deltaTb_vec,D_vec1,'Color',[0 112 192]/255,'LineWidth',linewidth)
+h = plot(deltaTb_vec,D_vec1,'Color',[0 112 192]/255,'LineWidth',linewidth);
 plot(deltaTb_vec,D_vec2,'Color',[0 112 192]/255,'LineWidth',linewidth)
+
+leg = legend(h,'[Cl$^{-}]=0$ $\mu$M');
+leg.Location = 'NorthEast';
+leg.ItemTokenSize = [15 15];
+leg.FontSize = fontsize;
+leg.Interpreter = interpreter;
+
 
 ax(p) = gca;
 ax(p).FontSize = fontsize;
@@ -391,12 +409,12 @@ ax(2).Position(2) = ax(5).Position(2)+ax(5).Position(4)+1.5*margin;
 ax(3).Position(2) = ax(6).Position(2)+ax(6).Position(4)+1.5*margin;
 
 % left
-ax(2).Position(1) = ax(1).Position(1)+ax(1).Position(3)+1.25*margin;
-ax(3).Position(1) = ax(2).Position(1)+ax(2).Position(3)+1.25*margin;
-ax(5).Position(1) = ax(4).Position(1)+ax(4).Position(3)+1.25*margin;
-ax(6).Position(1) = ax(5).Position(1)+ax(5).Position(3)+1.25*margin;
-ax(8).Position(1) = ax(7).Position(1)+ax(7).Position(3)+1.25*margin;
-ax(9).Position(1) = ax(8).Position(1)+ax(8).Position(3)+1.25*margin;
+ax(2).Position(1) = ax(1).Position(1)+ax(1).Position(3)+1.5*margin;
+ax(3).Position(1) = ax(2).Position(1)+ax(2).Position(3)+1.5*margin;
+ax(5).Position(1) = ax(4).Position(1)+ax(4).Position(3)+1.5*margin;
+ax(6).Position(1) = ax(5).Position(1)+ax(5).Position(3)+1.5*margin;
+ax(8).Position(1) = ax(7).Position(1)+ax(7).Position(3)+1.5*margin;
+ax(9).Position(1) = ax(8).Position(1)+ax(8).Position(3)+1.5*margin;
 
 % labels
 letters = {'a','b','c','d','e','f','g','h','i'};
@@ -407,7 +425,7 @@ for n = 1:length(letters)
     t(n).FontWeight = 'bold';
     t(n).Interpreter = 'tex';
     t(n).Units = 'centimeters';
-    t(n).Position = [ax(n).Position(1)-margin ax(n).Position(2)+h0 0.1 0.1];
+    t(n).Position = [ax(n).Position(1)-1.1*margin ax(n).Position(2)+h0 0.1 0.1];
     t(n).EdgeColor = 'w';
     t(n).HorizontalAlignment = 'left';
     t(n).VerticalAlignment = 'bottom';
@@ -458,6 +476,6 @@ t(n).Rotation = 90;
 f = gcf;
 f.Color = 'w';
 f.Units = 'centimeters';
-width = 3*(1.25*margin+w0)+margin;
+width = 3*(1.5*margin+w0)+margin;
 height = 3*(1.5*margin+h0);
 f.Position(3:4) = [width height];

@@ -29,7 +29,7 @@ Ts = 100;
 
 %% Temperature
 figure
-subplot(1,3,1)
+subplot(2,3,1)
 N = 1e4;
 Tm = 270;
 z = linspace(0,1,N)';
@@ -65,12 +65,20 @@ t2.Interpreter = interpreter;
 
 
 %% Radiometer
-load('Tb.mat')
+subplot(2,3,2)
 
-subplot(1,3,2)
+% This work
+load('Tb.mat')
 delta = Tb(1,:)-Tb(2,:);
 plot(D/1e3,delta,'Color',[0 112 192]/255,'LineWidth',linewidth)
 hold on
+
+% Brown
+load('Tb_Brown.mat')
+delta = Tb(1,:)-Tb(2,:);
+ind = find(delta<50 & D>10e3);
+plot(D(ind)/1e3,delta(ind),'k--','LineWidth',linewidth)
+
 ax2 = gca;
 ax2.FontSize = fontsize;
 ax2.TickLabelInterpreter = interpreter;
@@ -86,18 +94,85 @@ ax2.Title.Interpreter = interpreter;
 ax2.XLim = [0 100];
 ax2.XTick = [0:20:100];
 ax2.YLim = [-5 60];
+leg = legend('This Work','Brown et al. (2023)');
+leg.Location = 'SouthEast';
+leg.ItemTokenSize = [15 15];
+leg.Interpreter = interpreter;
 
+load('Tb.mat')
+delta = Tb(1,:)-Tb(2,:);
 disp(['Peak deltaTb = ',num2str(max(delta)),' K at D = ',num2str(D(delta==max(delta))/1e3),' km'])
+
+
+%% Attenuation Rate vs. Temperature
+f = 9e6;
+subplot(2,3,4)
+T = linspace(Ts,273.15).';
+eps_ice = ice_permittivity(T-273.15,f,0);
+[alpha, Na] = EMalpha(eps_ice,f);
+att = Na*1e3;
+plot(T,att,'k','LineWidth',linewidth)
+
+axis tight
+ax4 = gca;
+ax4.FontSize = fontsize;
+ax4.TickLabelInterpreter = interpreter;
+ax4.XLabel.String = 'Temperature, $T$ (K)';
+ax4.XLabel.FontSize = fontsize;
+ax4.XLabel.Interpreter = interpreter;
+ax4.YLabel.String = 'Attenuation Rate, $N_{\alpha}$ (dB/km)';
+ax4.YLabel.FontSize = fontsize;
+ax4.YLabel.Interpreter = interpreter;
+
+%% Fractional Depth vs. Attenuation Rate
+f = 9e6;
+subplot(2,3,5)
+Dvec = [1 100]*1e3;
+lstyle = {'-',':'};
+for n = 1:length(Dvec)
+    P = rho*g*Dvec(n);
+    Tm = Tmelt(P);
+
+    z = linspace(0,Dvec(n),N).';
+    T = Ts*(Tm/Ts).^(z./Dvec(n));
+
+    eps_ice = ice_permittivity(T-273.15,f,0);
+    [alpha, Na] = EMalpha(eps_ice,f);
+
+    att = Na*1e3;
+
+    plot(z./Dvec(n),att,lstyle{n},'LineWidth',linewidth,'Color','k')
+    hold on
+
+end
+
+axis tight
+ax5 = gca;
+ax5.FontSize = fontsize;
+ax5.TickLabelInterpreter = interpreter;
+ax5.XLabel.String = 'Fractional Depth, $z/D$';
+ax5.XLabel.FontSize = fontsize;
+ax5.XLabel.Interpreter = interpreter;
+ax5.YLabel.String = 'Attenuation Rate, $N_{\alpha}$ (dB/km)';
+ax5.YLabel.FontSize = fontsize;
+ax5.YLabel.Interpreter = interpreter;
+ax5.Layer = 'top';
+ax5.XTick = ax1.YTick;
+leg = legend(cellstr(num2str(Dvec'/1e3)));
+leg.ItemTokenSize = [15 15];
+leg.Title.String = '$D$ (km)';
+leg.Location = 'NorthWest';
+leg.Interpreter = interpreter;
 
 %% Radar
 f = 9e6;
-subplot(1,3,3)
+subplot(2,3,6)
 att = zeros(N,length(D));
 for n = 1:length(D)
     P = rho*g*D(n);
     Tm = Tmelt(P);
 
-    z = linspace(0,D(n),N);
+    z = linspace(0,D(n),N).';
     T = Ts*(Tm/Ts).^(z./D(n));
 
     eps_ice = ice_permittivity(T-273.15,f,0);
@@ -114,58 +189,68 @@ clabel(C,h,'Interpreter','latex','FontSize',fontsize,'Color',[1 0 0],...
 hold on
 
 p = plot([NaN NaN],[NaN NaN],'r');
-ax3 = gca;
-ax3.YDir = 'reverse';
-ax3.FontSize = fontsize;
-ax3.TickLabelInterpreter = interpreter;
-ax3.XLabel.String = 'Ice Shell Thickness, $D$ (km)';
-ax3.XLabel.FontSize = fontsize;
-ax3.XLabel.Interpreter = interpreter;
-ax3.YLabel.String = 'Fractional Depth, $z/d$';
-ax3.YLabel.FontSize = fontsize;
-ax3.YLabel.Interpreter = interpreter;
-ax3.Title.String = '$Active$ Radar Sounder';
-ax3.Title.FontSize = fontsize;
-ax3.Title.Interpreter = interpreter;
-ax3.Layer = 'top';
-ax3.XTick = 0:20:100;
+ax6 = gca;
+ax6.YDir = 'reverse';
+ax6.FontSize = fontsize;
+ax6.TickLabelInterpreter = interpreter;
+ax6.XLabel.String = 'Ice Shell Thickness, $D$ (km)';
+ax6.XLabel.FontSize = fontsize;
+ax6.XLabel.Interpreter = interpreter;
+ax6.YLabel.String = 'Fractional Depth, $z/D$';
+ax6.YLabel.FontSize = fontsize;
+ax6.YLabel.Interpreter = interpreter;
+ax6.Title.String = '$Active$ Radar Sounder';
+ax6.Title.FontSize = fontsize;
+ax6.Title.Interpreter = interpreter;
+ax6.Layer = 'top';
+ax6.XLim = [0 100];
+ax6.XTick = [0:20:100];
 leg = legend(p,'$2N_{\alpha}$ (dB/km)');
 leg.ItemTokenSize = [15 15];
 leg.Interpreter = interpreter;
+
 
 %% Figure Formatting
 % units
 ax1.Units = 'centimeters';
 ax2.Units = 'centimeters';
-ax3.Units = 'centimeters';
-cb.Units = 'centimeters';
+ax4.Units = 'centimeters';
+ax5.Units = 'centimeters';
+ax6.Units = 'centimeters';
 
 % left
 margin = 1;
 ax1.Position(1) = margin;
-ax2.Position(1) = margin;
-ax3.Position(1) = margin;
+ax4.Position(1) = margin;
 
 % height
 h0 = 4.25;
 ax1.Position(4) = h0;
 ax2.Position(4) = h0;
-ax3.Position(4) = h0;
+ax4.Position(4) = h0;
+ax5.Position(4) = h0;
+ax6.Position(4) = h0;
 
 % width
 w0 = 4.25;
 ax1.Position(3) = w0;
 ax2.Position(3) = w0;
-ax3.Position(3) = w0;
+ax4.Position(3) = w0;
+ax5.Position(3) = w0;
+ax6.Position(3) = w0;
+
 
 % bottom
-ax1.Position(2) = margin;
-ax2.Position(2) = margin;
-ax3.Position(2) = margin;
+ax4.Position(2) = margin;
+ax5.Position(2) = margin;
+ax6.Position(2) = margin;
+ax1.Position(2) = ax4.Position(2)+ax4.Position(4)+1.5*margin;
+ax2.Position(2) = ax5.Position(2)+ax5.Position(4)+1.5*margin;
 
 % left
-ax2.Position(1) = ax1.Position(1)+ax1.Position(3)+1.25*margin;
-ax3.Position(1) = ax2.Position(1)+ax2.Position(3)+1.25*margin;
+ax2.Position(1) = ax1.Position(1)+ax1.Position(3)+1.5*margin;
+ax5.Position(1) = ax4.Position(1)+ax4.Position(3)+1.5*margin;
+ax6.Position(1) = ax5.Position(1)+ax5.Position(3)+1.5*margin;
 
 % labels
 ta = annotation('textbox');
@@ -174,7 +259,7 @@ ta.FontSize = fontsize+2;
 ta.FontWeight = 'bold';
 ta.Interpreter = 'tex';
 ta.Units = 'centimeters';
-ta.Position = [ax1.Position(1)-margin ax1.Position(2)+h0 0.1 0.1];
+ta.Position = [ax1.Position(1)-1.1*margin ax1.Position(2)+h0 0.1 0.1];
 ta.EdgeColor = 'w';
 ta.HorizontalAlignment = 'left';
 ta.VerticalAlignment = 'bottom';
@@ -185,7 +270,7 @@ tb.FontSize = fontsize+2;
 tb.FontWeight = 'bold';
 tb.Interpreter = 'tex';
 tb.Units = 'centimeters';
-tb.Position = [ax2.Position(1)-margin ax2.Position(2)+h0 0.1 0.1];
+tb.Position = [ax2.Position(1)-1.1*margin ax2.Position(2)+h0 0.1 0.1];
 tb.EdgeColor = 'w';
 tb.HorizontalAlignment = 'left';
 tb.VerticalAlignment = 'bottom';
@@ -196,14 +281,39 @@ tc.FontSize = fontsize+2;
 tc.FontWeight = 'bold';
 tc.Interpreter = 'tex';
 tc.Units = 'centimeters';
-tc.Position = [ax3.Position(1)-margin ax3.Position(2)+h0 0.1 0.1];
+tc.Position = [ax4.Position(1)-1.1*margin ax4.Position(2)+h0 0.1 0.1];
 tc.EdgeColor = 'w';
 tc.HorizontalAlignment = 'left';
 tc.VerticalAlignment = 'bottom';
 
+td = annotation('textbox');
+td.String = 'd';
+td.FontSize = fontsize+2;
+td.FontWeight = 'bold';
+td.Interpreter = 'tex';
+td.Units = 'centimeters';
+td.Position = [ax5.Position(1)-1.1*margin ax5.Position(2)+h0 0.1 0.1];
+td.EdgeColor = 'w';
+td.HorizontalAlignment = 'left';
+td.VerticalAlignment = 'bottom';
+
+
+te = annotation('textbox');
+te.String = 'e';
+te.FontSize = fontsize+2;
+te.FontWeight = 'bold';
+te.Interpreter = 'tex';
+te.Units = 'centimeters';
+te.Position = [ax6.Position(1)-1.1*margin ax6.Position(2)+h0 0.1 0.1];
+te.EdgeColor = 'w';
+te.HorizontalAlignment = 'left';
+te.VerticalAlignment = 'bottom';
+
+
+
 f = gcf;
 f.Color = 'w';
 f.Units = 'centimeters';
-width = 3*(1.25*margin+w0);
-height = (1.5*margin+h0);
+width = 3*(1.5*margin+w0);
+height = 2*(1.5*margin+h0);
 f.Position(3:4) = [width height];
