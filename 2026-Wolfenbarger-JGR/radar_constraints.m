@@ -3,9 +3,10 @@
 % publication
 %
 % Wolfenbarger, N. S., Broome, A. L., Schroeder, D. M., Ermakov, A. I.,
-% Bolton, S. J., and Blankenship, D. D. (2025). Passive Microwave
-% Radiometry and Active Radar Sounding as Complementary Tools for
-% Geophysical Investigations of Icy Ocean Worlds.
+% Bolton, S. J., & Blankenship, D. D. (2026). Passive microwave radiometry
+% and active radar sounding as complementary tools for geophysical
+% investigations of icy ocean worlds. Journal of Geophysical Research:
+% Planets, 131, e2025JE009301. https://doi.org/10.1029/2025JE009301.
 
 clear all; close all; clc
 

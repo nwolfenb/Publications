@@ -2,9 +2,10 @@
 % Generates brightness temperature data for the publication
 %
 % Wolfenbarger, N. S., Broome, A. L., Schroeder, D. M., Ermakov, A. I.,
-% Bolton, S. J., and Blankenship, D. D. (2025). Passive Microwave
-% Radiometry and Active Radar Sounding as Complementary Tools for
-% Geophysical Investigations of Icy Ocean Worlds.
+% Bolton, S. J., & Blankenship, D. D. (2026). Passive microwave radiometry
+% and active radar sounding as complementary tools for geophysical
+% investigations of icy ocean worlds. Journal of Geophysical Research:
+% Planets, 131, e2025JE009301. https://doi.org/10.1029/2025JE009301.
 
 clear all; close all; clc
 
@@ -14,7 +15,7 @@ addpath(genpath('..\..\IcyRF'))
 addpath(genpath('..\..\BrineVolumeFraction'))
 
 %% Brown
-% Data for Figure S9 in Supporting Information S1
+% Data for Figure 3 and Figure S9 in Supporting Information S1
 f = [0.6 1.2 2.5 5.0 10 22]'*1e9; % Hz
 D = [1e-3 (1:1:100)]*1e3; % m
 Ts = 111; % K
