@@ -70,7 +70,7 @@ f = [0.009 0.06 0.6 1.2 2.5 5.0 10 22]'*1e9;
 subplot(2,2,2)
 for m = 1:length(f)
     T = linspace(100,273.15);
-    eps_ice = ice_permittivity(T-273.15,f(m),0);
+    eps_ice = ice_permittivity(T,f(m),0);
     [alpha, Na] = EMalpha(eps_ice,f(m));
     semilogy(T,Na*1e3,'Color',colors(m,:),'LineWidth',linewidth)
     hold on
@@ -125,7 +125,7 @@ for m = 1:length(f)
     T = Ts*(Tm/Ts).^(z./D);
 
 
-    eps_ice = ice_permittivity(T-273.15,f(m),0);
+    eps_ice = ice_permittivity(T,f(m),0);
     [alpha, Na] = EMalpha(eps_ice,f(m));
 
     for n = 1:length(D)
@@ -167,7 +167,7 @@ for p = 1:length(S)
         T = Ts*(Tm/Ts).^(z./D);
 
 
-        eps_ice = ice_permittivity(T-273.15,f(m),0);
+        eps_ice = ice_permittivity(T,f(m),0);
         [alpha, Na] = EMalpha(eps_ice,f(m));
 
         for n = 1:length(D)
@@ -196,7 +196,7 @@ for m = 1:length(f)
     T = Ts*(Tm/Ts).^(z./D);
 
 
-    eps_ice = ice_permittivity(T-273.15,f(m),0);
+    eps_ice = ice_permittivity(T,f(m),0);
     [alpha, Na] = EMalpha(eps_ice,f(m));
 
     for n = 1:length(D)

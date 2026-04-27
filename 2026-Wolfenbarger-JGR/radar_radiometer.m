@@ -109,7 +109,7 @@ disp(['Peak deltaTb = ',num2str(max(delta)),' K at D = ',num2str(D(delta==max(de
 f = 9e6;
 subplot(2,3,4)
 T = linspace(Ts,273.15).';
-eps_ice = ice_permittivity(T-273.15,f,0);
+eps_ice = ice_permittivity(T,f,0);
 [alpha, Na] = EMalpha(eps_ice,f);
 att = Na*1e3;
 plot(T,att,'k','LineWidth',linewidth)
@@ -137,7 +137,7 @@ for n = 1:length(Dvec)
     z = linspace(0,Dvec(n),N).';
     T = Ts*(Tm/Ts).^(z./Dvec(n));
 
-    eps_ice = ice_permittivity(T-273.15,f,0);
+    eps_ice = ice_permittivity(T,f,0);
     [alpha, Na] = EMalpha(eps_ice,f);
 
     att = Na*1e3;
@@ -176,7 +176,7 @@ for n = 1:length(D)
     z = linspace(0,D(n),N).';
     T = Ts*(Tm/Ts).^(z./D(n));
 
-    eps_ice = ice_permittivity(T-273.15,f,0);
+    eps_ice = ice_permittivity(T,f,0);
     [alpha, Na] = EMalpha(eps_ice,f);
 
     att(:,n) = 2*Na*1e3;

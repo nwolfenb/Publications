@@ -36,7 +36,7 @@ Ea_Cl = 0.19;
 
 %% Idealized Ice Shell
 T = Ts*(Tm0/Ts).^(z/D);
-eps_ice = ice_permittivity(T-273.15,f,0);
+eps_ice = ice_permittivity(T,f,0);
 
 [alpha, Na] = EMalpha(eps_ice,f);
 att= 2e3*Na;
@@ -92,7 +92,7 @@ for q = 1:length(deltaTm)
     Tm = Tm0-deltaTm(q);
 
     T = Ts*(Tm/Ts).^(z/D);
-    eps_ice = ice_permittivity(T-273.15,f,0);
+    eps_ice = ice_permittivity(T,f,0);
 
     [alpha, Na] = EMalpha(eps_ice,f);
     att(:,q) = 2e3*Na;
@@ -232,7 +232,7 @@ for q = 1:length(fconv)
     T(z<=dcond) = Ts*(Tm/Ts).^(z(z<=dcond)./dcond);
     T(z>dcond) = Tm;
 
-    eps_ice = ice_permittivity(T-273.15,f,0);
+    eps_ice = ice_permittivity(T,f,0);
 
     [alpha, Na] = EMalpha(eps_ice,f);
     att(:,q) = 2e3*Na;
@@ -345,7 +345,7 @@ for q = 1:length(uMCl)
 
     sigma_Cl = C_Cl.*exp(-(Ea_Cl/k).*((1./T)-(1/Tr)))/1e6;
 
-    eps_ice = ice_permittivity(T-273.15,f,sigma_Cl);
+    eps_ice = ice_permittivity(T,f,sigma_Cl);
 
     [alpha, Na] = EMalpha(eps_ice,f);
     att(:,q) = 2e3*Na;

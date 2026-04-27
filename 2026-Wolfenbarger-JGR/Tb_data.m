@@ -28,7 +28,7 @@ for m=1:length(f)
 
         z = (0:1:D(n))';
         T = Ts*(Tm/Ts).^(z./D(n));
-        eps_ice = ice_matzler(T-273.15,f(m));
+        eps_ice = ice_matzler(T,f(m));
 
         Z{m,n} = z;
 
@@ -60,7 +60,7 @@ for m=1:length(f)
 
         Z{m,n} = z;
 
-        eps_ice = ice_permittivity(T-273.15,f(m),0);
+        eps_ice = ice_permittivity(T,f(m),0);
         [Tb(m,n), Tb_z{m,n}, Tb1(m,n), Tb2(m,n), Tb3(m,n)] = brightness(T,z,eps_ice,rs,rb,f(m),Tsky);
     end
 end
@@ -85,7 +85,7 @@ for m=1:length(f)
     for n = 1:length(D)
         P = rho*g*D(n);
         Tm = Tmelt(P);
-        [rb, ~] = EMcoef(ice_permittivity(Tm-273.15,f(m),0),...
+        [rb, ~] = EMcoef(ice_permittivity(Tm,f(m),0),...
             water_permittivity(Tm-273.15,f(m)));
 
         z = (0:1:D(n))';
@@ -93,7 +93,7 @@ for m=1:length(f)
 
         Z{m,n} = z;
 
-        eps_ice = ice_permittivity(T-273.15,f(m),0);
+        eps_ice = ice_permittivity(T,f(m),0);
         [Tb(m,n), Tb_z{m,n}, Tb1(m,n), Tb2(m,n), Tb3(m,n)] = brightness(T,z,eps_ice,rs,rb,f(m),Tsky);
     end
 end
@@ -113,15 +113,15 @@ for m=1:length(f)
     for n = 1:length(D)
         P = rho*g*D(n);
         Tm = Tmelt(P);
-        [rb, ~] = EMcoef(ice_permittivity(Tm-273.15,f(m),0),...
-            water_permittivity(Tm-273.15,f(m)));
+        [rb, ~] = EMcoef(ice_permittivity(Tm,f(m),0),...
+            water_permittivity(Tm,f(m)));
 
         z = (0:1:D(n))';
         T = Ts*(Tm/Ts).^(z./D(n));
 
         Z{m,n} = z;
 
-        eps_ice = ice_permittivity(T-273.15,f(m),0);
+        eps_ice = ice_permittivity(T,f(m),0);
         [Tb(m,n), Tb_z{m,n}, Tb1(m,n), Tb2(m,n), Tb3(m,n)] = brightness(T,z,eps_ice,rs,rb,f(m),Tsky);
     end
 end
@@ -142,7 +142,7 @@ for q = 1:length(fconv)
         for n = 1:length(D)
 
             % Base
-            eps_ice = ice_permittivity(Tconv-273.15,f(m),0);
+            eps_ice = ice_permittivity(Tconv,f(m),0);
 
             [rb, ~] = EMcoef(eps_ice,...
                 water_permittivity(Tconv-273.15,f(m)));
@@ -160,7 +160,7 @@ for q = 1:length(fconv)
             end
 
             % Ice Shell
-            eps_ice = ice_permittivity(T-273.15,f(m),0);
+            eps_ice = ice_permittivity(T,f(m),0);
 
             [Tb(m,n,q), ~, ~, ~, ~] = brightness(T,z,eps_ice,rs,rb,f(m),Tsky);
         end
@@ -186,7 +186,7 @@ for q = 1:length(deltaTm)
             Tm = Tmelt(P)-deltaTm(q);
 
             % Base
-            eps_ice = ice_permittivity(Tm-273.15,f(m),0);
+            eps_ice = ice_permittivity(Tm,f(m),0);
 
             [rb, ~] = EMcoef(eps_ice,...
                 water_permittivity(Tm-273.15,f(m)));
@@ -196,7 +196,7 @@ for q = 1:length(deltaTm)
 
 
             % Ice Shell
-            eps_ice = ice_permittivity(T-273.15,f(m),0);
+            eps_ice = ice_permittivity(T,f(m),0);
 
             [Tb(m,n,q), ~, ~, ~, ~] = brightness(T,z,eps_ice,rs,rb,f(m),Tsky);
         end
@@ -227,10 +227,10 @@ for q = 1:length(uMCl)
             Tm = Tmelt(P);
 
             % Base
-            eps_ice = ice_permittivity(Tm-273.15,f(m),0);
+            eps_ice = ice_permittivity(Tm,f(m),0);
 
             [rb, ~] = EMcoef(eps_ice,...
-                water_permittivity(Tm-273.15,f(m)));
+                water_permittivity(Tm,f(m)));
 
             z = (0:1:D(n))';
             T = Ts*(Tm/Ts).^(z./D(n));
@@ -238,7 +238,7 @@ for q = 1:length(uMCl)
             % Ice Shell
             sigma_Cl = C_Cl.*exp(-(Ea_Cl/k).*((1./T)-(1/Tr)))/1e6;
 
-            eps_ice = ice_permittivity(T-273.15,f(m),sigma_Cl);
+            eps_ice = ice_permittivity(T,f(m),sigma_Cl);
 
             [Tb(m,n,q), ~, ~, ~, ~] = brightness(T,z,eps_ice,rs,rb,f(m),Tsky);
         end
